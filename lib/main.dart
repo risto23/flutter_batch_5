@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_batch_5/pages/home_page.dart';
-import 'package:flutter_batch_5/pages/layout_page.dart';
-import 'package:flutter_batch_5/pages/profile_page.dart';
+import 'package:flutter_batch_5/pages/day3/home_page.dart';
+import 'package:flutter_batch_5/pages/day3/layout_page.dart';
+import 'package:flutter_batch_5/pages/day3/profile_page.dart';
+import 'package:flutter_batch_5/pages/day4/expanded_screen.dart';
+import 'package:flutter_batch_5/pages/day4/gridview_builder_screen.dart';
+import 'package:flutter_batch_5/pages/day4/gridview_count_screen.dart';
+import 'package:flutter_batch_5/pages/day4/gridview_screen.dart';
+import 'package:flutter_batch_5/pages/day4/listview_builder_screen.dart';
+import 'package:flutter_batch_5/pages/day4/listview_screen.dart';
+import 'package:flutter_batch_5/pages/day4/listview_separated_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,11 +21,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.light,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        )
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: LayoutPage(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.red,
+        )
+      ),
+      home: GridViewBuilderScreen(),
     );
   }
 }
