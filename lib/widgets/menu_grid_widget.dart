@@ -51,7 +51,13 @@ final menus = [
 
 
 class MenuGridWidget extends StatelessWidget {
-  const MenuGridWidget({super.key});
+
+  final Function(String menu)? onClick;
+
+  const MenuGridWidget({
+    super.key,
+    this.onClick,
+    });
   
 
   @override
@@ -68,17 +74,7 @@ class MenuGridWidget extends StatelessWidget {
         ),
         itemCount: menus.length,
         itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                  return AlertDialog(
-                    title: Text(menus[index]['menu'] as String),
-                    
-                  );
-                },
-                );
-            },
+          onTap: () =>  onClick?.call(menus[index]['menu'] as String),
           child: Card(
             
             child: Column(
