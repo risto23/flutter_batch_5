@@ -14,10 +14,16 @@ import 'package:flutter_batch_5/pages/day5/setting_screen.dart';
 import 'package:flutter_batch_5/pages/day6/bloc/theme_cubit.dart';
 import 'package:flutter_batch_5/pages/day6/bloc/theme_state.dart';
 import 'package:flutter_batch_5/pages/day6/counter_page.dart';
+import 'package:flutter_batch_5/pages/day7/local_storage/theme_local_storage.dart';
+import 'package:flutter_batch_5/pages/day7/pages/product_pages.dart';
 import 'package:flutter_batch_5/utils/routes.dart';
+import 'package:flutter_batch_5/utils/singleton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupSingleton();
   runApp(const MyApp());
 }
 
@@ -28,7 +34,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => ThemeCubit(
+          ThemeLocalStorage(getIt.get())
+        )..init()),
+        // BlocProvider(create: (context) => CounterCubit()),
         // BlocProvider(create: (context) => OtherCubit()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
@@ -60,8 +69,8 @@ class MyApp extends StatelessWidget {
               ),
             ),
             routes: routes,
-            initialRoute: AppRoute.home,
-            // home: CounterPage(),
+            // initialRoute: AppRoute.home,
+            home: CounterPage(),
           );
         }
       ),
